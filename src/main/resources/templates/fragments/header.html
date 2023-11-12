@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="header">
+    <ul>
+        <li><a th:href="@{/}">MAIN</a></li>
+        <li><a th:href="@{/info}">INFO</a></li>
+        <li><a th:href="@{/about}">ABOUT</a></li>
+        <li><a th:href="@{/admin}">ADMIN</a></li>
+        <li><a th:href="@{/blocked}">BLOCKED</a></li>
+        <li sec:authorize="isAnonymous()">
+            <a class="btn btn-primary" href="#" th:href="@{/login}">Login</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
